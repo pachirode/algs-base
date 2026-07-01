@@ -5,11 +5,12 @@ import (
 	"testing"
 
 	"github.com/pachirode/algs-base/internal/pkg/student"
+	"github.com/pachirode/algs-base/internal/pkg/utils"
 )
 
 func TestLinearSearch(t *testing.T) {
 	// int
-	ints := []int{1, 2, 3, 4}
+	ints := utils.GenerateSortedSlice[int](4)
 	fmt.Printf("Search(ints, 1): %v\n", Search(ints, 1))
 	fmt.Printf("Search(ints, 5): %v\n", Search(ints, 5))
 
@@ -31,4 +32,12 @@ func TestLinearSearch(t *testing.T) {
 	}
 	fmt.Printf("Search(students, 李四): %v\n", Search(students, student.Student{Name: "李四", ID: 1002, Socre: 92.0}))
 	fmt.Printf("Search(students, 赵六): %v\n", Search(students, student.Student{Name: "赵六", ID: 9999, Socre: 0}))
+}
+
+func BenchmarkLinearSearch(b *testing.B) {
+	data := utils.GenerateSortedSlice[int](100000)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Search(data, 9999)
+	}
 }

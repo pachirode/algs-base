@@ -1,4 +1,4 @@
-package linear_search
+package linear
 
 func Search[T comparable](data []T, target T) int {
 	for i, v := range data {

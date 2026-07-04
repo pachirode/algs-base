@@ -1,4 +1,4 @@
-package linear_search
+package linear
 
 import (
 	"fmt"

@@ -25,6 +25,17 @@ func SortNoInplace[T cmp.Ordered](data []T) []T {
 
 func Sort[T cmp.Ordered](data []T) []T {
 	for i := 0; i < len(data); i++ {
+		for j := i + 1; j < len(data); j++ {
+			if data[j] < data[i] {
+				data[i], data[j] = data[j], data[i]
+			}
+		}
+	}
+	return data
+}
+
+func SortOptimize[T cmp.Ordered](data []T) []T {
+	for i := 0; i < len(data); i++ {
 		minIdx := i
 		for j := i + 1; j < len(data); j++ {
 			if data[j] < data[minIdx] {
